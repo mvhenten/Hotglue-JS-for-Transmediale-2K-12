@@ -1,21 +1,23 @@
-== Simple plugin that injects the 'hotglue' feature into jquery ==
+## Simple plugin that injects the 'hotglue' feature into jquery
 
 This is a one-off plugin for transmediale 2012 site. All it does is pick
 a number of links out of a jquery selection, and changes them into something
 like:
 
-http://myproject.org?s=<original href>
+    hxxp://myproject.org?s=[[original href]]
 
 Links are first picked from a map, then shuffled, and finally, sliced up to n,
 where n is the amount of links to be converted.
 
-=== LINKS: ===
+### LINKS:
 
 * http://hotglue.org
 * http://transmediale.de
 * http://en.wikipedia.org/wiki/Fisher-Yates_shuffle
 
-== SYNOPSIS: ==
+## SYNOPSIS:
+
+```javascript
 
    // will hijack 5 links from '.festival a' randomly
    $('.festival-menu a').hotglue(5);
@@ -23,8 +25,9 @@ where n is the amount of links to be converted.
    // will hijack just about every link etc. etc.
    $('a').hotglue(999);
 
+```
 
-== Licence ==
+## License
 
 Copyright (c) Matthijs van Henten (http://ischen.nl), 2011-2012.
 
