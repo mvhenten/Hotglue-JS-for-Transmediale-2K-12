@@ -26,13 +26,11 @@ function scriptTag(src, callback) {
     (document.body || head).appendChild(s);
 }
 
-//var domain = 'https://raw.github.com/mvhenten/Hotglue-JS-for-Transmediale-2K-12/master/extra/display.js';
-var domain = 'http://bison.localhost/display.js';
+var domain = 'https://raw.github.com/mvhenten/Hotglue-JS-for-Transmediale-2K-12/master/extra/display.min.js';
+//var domain = 'http://bison.localhost/display.js';
 
 scriptTag('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', function(){
     scriptTag( 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js', function(){
-        scriptTag( domain, function(){
-            console.log('hello world');
-        });
+        scriptTag( domain, function(){/* all is well at kwarter pas twelve */});
     });
 })
