@@ -23,8 +23,8 @@ var glue_display = (function ($) {
     function cycleIframe(iframe_cycle, iframe_sources) {
         var sel = iframe_cycle.shift();
 
-        $(iframe_cycle[0]).hide();
         $(sel).show();
+        $(iframe_cycle[0]).slideUp();
         $(iframe_cycle[0]).attr('src', cycleIframeSources( iframe_sources ) );
 
         iframe_cycle.push(sel);
