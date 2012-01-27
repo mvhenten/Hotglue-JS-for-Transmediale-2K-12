@@ -54,7 +54,8 @@ var glue_display = (function ($) {
         $('body').append('<div id="hotglue-frame-trigger"></div>' );
 
 
-        $(document).scroll(function(){
+        $(document).scroll(function( evt, delta ){
+            console.log(delta);
             if( scrollBottom() ){
                 var sel = cycleIframe( iframe_cycle, iframe_sources );
                 $(window).scrollTop( $(sel).offset().top );
