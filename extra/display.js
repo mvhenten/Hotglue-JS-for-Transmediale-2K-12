@@ -1,10 +1,16 @@
 (function($){
-    var bison_service = 'http://bison.localhost/pjson.php?src=http://www.transmediale.de/tm2k12&callback=?';
+    var href = document.location.href;
+    var bison_service = 'http://incompatible.hotglue.org/pjson.php?src=' + href + '&callback=?';
     $.getJSON(bison_service,{}, function(iframe_sources){
+        if( iframe_sources.length == 0 ){
+            return;
+        }
+
         $('body').append('<iframe scrolling="no" id="hotglue-frame-a" src="' + cycleIframeSources() + '" width="100%" height="100%">');
         $('body').append('<iframe scrolling="no" id="hotglue-frame-b" src="' + cycleIframeSources() + '" width="100%" height="100%">');
 
         $('#hotglue-frame-b').hide();
+        $('#hotglue-frame-a').hide();
 
         var body_height = $('body').css('height');
 
@@ -24,8 +30,6 @@
         function cycleIframe(){
             var sel = iframe_cycle.shift();
 
-            console.log(sel);
-
             $(sel).show();
             $(iframe_cycle[0]).hide();
             $(iframe_cycle[0]).attr('src', cycleIframeSources() );
@@ -33,14 +37,6 @@
             iframe_cycle.push(sel);
 
             return sel;
-        }
-
-        function scrollTop(){
-            if( document.documentElement.scrollTop ){
-                return document.documentElement.scrollTop;
-            }
-
-            return document.body.scrollTop
         }
 
         function scrollBottom(){
