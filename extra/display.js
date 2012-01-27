@@ -7,7 +7,7 @@ var glue_display = (function ($) {
             vpHeight = $(window).height(),
             bottom   = $('#hotglue-frame-trigger').offset().top;
 
-        if ((top + vpHeight) > bottom - 50) {
+        if ((top + vpHeight) > bottom - 25) {
             return true;
         }
 
