@@ -25,7 +25,7 @@
  * GNU General Public License for more details.
  */
 (function ($) {
-    var hotglue_url = 'http://transmediale.hotglue.org';
+    var hotglue_url = 'http://incompatible.hotglue.org';
 
     var shuffle = function (a) {
         var tmp, cur, top = a.length;
