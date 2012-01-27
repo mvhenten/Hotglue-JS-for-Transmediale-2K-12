@@ -17,13 +17,19 @@ where n is the amount of links to be converted.
 
 ## SYNOPSIS:
 
-```javascript
+```html
 
-   // will hijack 5 links from '.festival a' randomly
-   $('.festival-menu a').hotglue(5);
+    <!-- before body, after jquery -->
+    <script src="hotglue.plugin.js"></script>
+    <script>
+    $.ready(function(){
+        // will hijack 5 links from '.festival a' randomly
+        $('.festival-menu a').hotglue(5);
 
-   // will hijack just about every link etc. etc.
-   $('a').hotglue(999);
+        // will hijack just about every link etc. etc.
+        $('a').hotglue(999);
+    });
+    </script>
 
 ```
 
