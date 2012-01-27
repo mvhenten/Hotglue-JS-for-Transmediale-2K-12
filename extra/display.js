@@ -1,70 +1,65 @@
-/**
- * Display user dirs in iframes at the bottom of the page - proof of concept.
- */
-var iframe_sources = [
-    'http://bison.localhost/user/4f208182e8f2a/content-cyberfeminist-manifesto-21st-century',
-    'http://bison.localhost/user/4f207d7ec4481/content-cyberfeminist-manifesto-21st-century',
-    'http://bison.localhost/user/4f208c26ed62b/content-cyberfeminist-manifesto-21st-century'
-];
+(function($){
+    var bison_service = 'http://bison.localhost/pjson.php?src=http://www.transmediale.de/tm2k12&callback=?';
+    $.getJSON(bison_service,{}, function(iframe_sources){
+        $('body').append('<iframe scrolling="no" id="hotglue-frame-a" src="' + cycleIframeSources() + '" width="100%" height="100%">');
+        $('body').append('<iframe scrolling="no" id="hotglue-frame-b" src="' + cycleIframeSources() + '" width="100%" height="100%">');
 
-$('body').append('<iframe scrolling="no" id="hotglue-frame-a" src="' + cycleIframeSources() + '" width="100%" height="100%">');
-$('body').append('<iframe scrolling="no" id="hotglue-frame-b" src="' + cycleIframeSources() + '" width="100%" height="100%">');
+        $('#hotglue-frame-b').hide();
 
-$('#hotglue-frame-b').hide();
+        var body_height = $('body').css('height');
 
-var body_height = $('body').css('height');
+        $('#hotglue-frame-a').css('height', body_height );
+        $('#hotglue-frame-b').css('height', body_height );
 
-$('#hotglue-frame-a').css('height', body_height );
-$('#hotglue-frame-b').css('height', body_height );
+        $('body').append('<div id="hotglue-frame-trigger"></div>' )
 
-$('body').append('<div id="hotglue-frame-trigger"></div>' )
+        var iframe_cycle = ['#hotglue-frame-a', '#hotglue-frame-b'];
 
-var iframe_cycle = ['#hotglue-frame-a', '#hotglue-frame-b'];
+        function cycleIframeSources(){
+            var source = iframe_sources.shift();
+            iframe_sources.push(source);
+            return source;
+        }
 
+        function cycleIframe(){
+            var sel = iframe_cycle.shift();
 
-function cycleIframeSources(){
-    var source = iframe_sources.shift();
-    iframe_sources.push(source);
-    return source;
-}
+            console.log(sel);
 
-function cycleIframe(){
-    var sel = iframe_cycle.shift();
+            $(sel).show();
+            $(iframe_cycle[0]).hide();
+            $(iframe_cycle[0]).attr('src', cycleIframeSources() );
 
-    console.log(sel);
+            iframe_cycle.push(sel);
 
-    $(sel).show();
-    $(iframe_cycle[0]).hide();
-    $(iframe_cycle[0]).attr('src', cycleIframeSources() );
+            return sel;
+        }
 
-    iframe_cycle.push(sel);
+        function scrollTop(){
+            if( document.documentElement.scrollTop ){
+                return document.documentElement.scrollTop;
+            }
 
-    return sel;
-}
+            return document.body.scrollTop
+        }
 
-function scrollTop(){
-    if( document.documentElement.scrollTop ){
-        return document.documentElement.scrollTop;
-    }
+        function scrollBottom(){
+            var top      = $(window).scrollTop(),
+                vpHeight = $(window).height(),
+                bottom   = $('#hotglue-frame-trigger').offset().top;
 
-    return document.body.scrollTop
-}
+            if( ( top + vpHeight ) > bottom - 50 ){
+                return true;
+            }
 
-function scrollBottom(){
-    var top      = $(window).scrollTop(),
-        vpHeight = $(window).height(),
-        bottom   = $('#hotglue-frame-trigger').offset().top;
+            return false;
+        }
 
-    if( ( top + vpHeight ) > bottom - 50 ){
-        return true;
-    }
-
-    return false;
-}
-
-$(document).scroll(function(){
-    if( scrollBottom() ){
-        var sel = cycleIframe();
-        $(window).scrollTop( $(sel).offset().top );
-    }
-});
+        $(document).scroll(function(){
+            if( scrollBottom() ){
+                var sel = cycleIframe();
+                $(window).scrollTop( $(sel).offset().top );
+            }
+        });
+    });
+}(jQuery))
