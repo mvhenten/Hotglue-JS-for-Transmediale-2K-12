@@ -1,11 +1,17 @@
 var glue_display = (function ($) {
     var href = document.location.href,
-        bison_service = 'http://incompatible.hotglue.org/pjson.php?src=' + href + '&callback=?';
+        bison_service = 'http://incompatible.hotglue.org/pjson.php?src='
+            + href + '&callback=?';
 
     function scrollBottom() {
         var top      = $(window).scrollTop(),
             vpHeight = $(window).height(),
             bottom   = $('#hotglue-frame-trigger').offset().top;
+
+        // opera shiv, $(window).height() reports wrong dimensions
+        if( $.browser.opera && $.browser.version > "9.5" ){
+            vpHeight = document.documentElement["clientHeight"];
+        }
 
         if ((top + vpHeight) > bottom - 25) {
             return true;
@@ -37,6 +43,7 @@ var glue_display = (function ($) {
             return;
         }
         var iframe_cycle = ['#hotglue-frame-a', '#hotglue-frame-b'],
+            scroll_top = $(window).scrollTop(),
             body_height = $('body').css('height');
 
         $('body').append('<iframe scrolling="no" id="hotglue-frame-a" src="'
@@ -54,9 +61,11 @@ var glue_display = (function ($) {
         $('body').append('<div id="hotglue-frame-trigger"></div>' );
 
 
-        $(document).scroll(function( evt, delta ){
-            console.log(delta);
-            if( scrollBottom() ){
+        $(document).scroll(function( evt ){
+            var delta = scroll_top -  $(window).scrollTop();
+            scroll_top = $(window).scrollTop();
+
+            if( scrollBottom() && (delta < 0) ){
                 var sel = cycleIframe( iframe_cycle, iframe_sources );
                 $(window).scrollTop( $(sel).offset().top );
             }
