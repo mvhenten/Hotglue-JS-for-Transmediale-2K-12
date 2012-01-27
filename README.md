@@ -1,4 +1,4 @@
-## Simple plugin that injects the 'hotglue' feature into jquery
+## Simple jQuery plugin that injects the 'hotglue' feature into jquery
 
 This is a one-off plugin for transmediale 2012 site. All it does is pick
 a number of links out of a jquery selection, and changes them into something
@@ -14,6 +14,21 @@ where n is the amount of links to be converted.
 * http://hotglue.org
 * http://transmediale.de
 * http://en.wikipedia.org/wiki/Fisher-Yates_shuffle
+
+### FILES:
+
+*  hotglue.plugin.js
+
+   Uncompressed script source
+
+*  hotglue.min.js
+
+   Minified sources
+
+*  hotglue.user.js
+
+    A chrome-user script to test functionality: it inserts a script tag
+    containing hotglue.plugin.min.js
 
 ## SYNOPSIS:
 

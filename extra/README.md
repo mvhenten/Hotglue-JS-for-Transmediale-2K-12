@@ -9,11 +9,16 @@ Links are retrieved from hotglue using a jsonp request:
 
 ### FILES:
 
-* display.js
-    Uncompressed script source
-* display.min.js
-    Minified sources
-* display.user.js
+*  display.js
+
+   Uncompressed script source
+
+*  display.min.js
+
+   Minified sources
+   
+*  display.user.js
+
     A chrome-user script to test functionality: it inserts a script tag
     containing display.min.js
 
