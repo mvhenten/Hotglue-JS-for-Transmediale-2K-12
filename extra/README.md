@@ -29,8 +29,14 @@ Links are retrieved from hotglue using a jsonp request:
 
 ```html
 
-<!-- display hotglue pages, that's all -->
+<!-- script tag insered near </head> -->
 <script src="display.min.js"></script>
+
+<!-- somewhere after body or in $.ready -->
+<script>
+    glue_display.initialize();
+</script>
+
 
 
 ```
