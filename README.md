@@ -18,13 +18,13 @@ where n is the amount of links to be converted.
 ### FILES:
 
 *  hotglue.plugin.js
-   Uncompressed script source
+   - Uncompressed script source
 
 *  hotglue.min.js
-   Minified sources
+   - Minified sources
 
 *  hotglue.user.js
-    A chrome-user script to test functionality: it inserts a script tag
+    - A chrome-user script to test functionality: it inserts a script tag
     containing hotglue.plugin.min.js
 
 ## SYNOPSIS:
