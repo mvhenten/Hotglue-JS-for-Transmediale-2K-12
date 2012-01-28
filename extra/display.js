@@ -26,14 +26,22 @@ var glue_display = (function ($) {
         return source;
     }
 
+    var lock = false;
+
     function cycleIframe(iframe_cycle, iframe_sources) {
+        if( lock ){
+            return;
+        }
+
+        lock = true;
         var sel = iframe_cycle.shift();
 
-        $(sel).show();
-        $(iframe_cycle[0]).hide();
-        $(iframe_cycle[0]).attr('src', cycleIframeSources( iframe_sources ) );
-
-        iframe_cycle.push(sel);
+        $(iframe_cycle[0]).fadeOut(600, function(){
+            $(sel).fadeIn();
+            $(iframe_cycle[0]).attr('src', cycleIframeSources( iframe_sources ) );
+            iframe_cycle.push(sel);
+            lock = false;
+        });
 
         return sel;
     }
