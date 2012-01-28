@@ -39,7 +39,7 @@ var glue_display = (function ($) {
     }
 
     function json_handler( iframe_sources ){
-        if (iframe_sources.length === 0){
+        if (iframe_sources.length < 2 ){
             return;
         }
         var iframe_cycle = ['#hotglue-frame-a', '#hotglue-frame-b'],
