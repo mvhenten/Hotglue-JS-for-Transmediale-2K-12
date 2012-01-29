@@ -55,9 +55,9 @@ var glue_display = (function ($) {
             body_height = $('body').css('height');
 
         $('body').append('<iframe scrolling="no" id="hotglue-frame-a" src="'
-            + cycleIframeSources( iframe_sources ) + '" width="100%" height="100%">');
+            + iframe_sources[0] + '" width="100%" height="100%">');
         $('body').append('<iframe scrolling="no" id="hotglue-frame-b" src="'
-            + cycleIframeSources( iframe_sources ) + '" width="100%" height="100%">');
+            + iframe_sources[1] + '" width="100%" height="100%">');
 
         $('#hotglue-frame-b').hide();
         $('#hotglue-frame-a').hide();
